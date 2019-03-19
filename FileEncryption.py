@@ -40,7 +40,7 @@ def myEncryptHMAC(m, k, hKey):
         encryptor = cipher.encryptor()
         ct = encryptor.update(p_data)+encryptor.finalize()
 
-        h = hmac.HMAC(hKey, hashes.SHA256(), backend=default_backend())
+        h = hmac.HMAC(hKey, hashes.SHA3_512(), backend=default_backend())
         h.update(ct)
         t = h.finalize()
         
@@ -101,7 +101,7 @@ def myDecryptHMAC(k, hKey, IV, ct, t):
 
     backend = default_backend()
 
-    h = hmac.HMAC(hKey, hashes.SHA256(), backend = backend);
+    h = hmac.HMAC(hKey, hashes.SHA3_512(), backend = backend);
     h.update(ct)
     h.verify(t)
     
